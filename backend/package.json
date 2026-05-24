@@ -1,0 +1,42 @@
+{
+  "name": "quiz-app-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "migrate": "npm run migrate:up",
+    "migrate:create": "mikro-orm-esm migration:create",
+    "migrate:up": "mikro-orm-esm migration:up",
+    "migrate:down": "mikro-orm-esm migration:down",
+    "seed": "tsx src/db/seed.ts",
+    "test": "echo \"Add tests\" && exit 0"
+  },
+  "dependencies": {
+    "@mikro-orm/core": "^6.5.3",
+    "@mikro-orm/migrations": "^6.5.3",
+    "@mikro-orm/postgresql": "^6.5.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@mikro-orm/cli": "^6.5.3",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/db/mikro-orm.config.ts",
+      "./dist/db/mikro-orm.config.js"
+    ]
+  }
+}
